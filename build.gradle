@@ -50,6 +50,17 @@ dependencies {
   testCompile "org.scalatest:scalatest_${scalaMajorVersion}:3.0.1"
   testRuntime 'org.pegdown:pegdown:1.1.0' // TODO: is this necessary?
 
+  // ------------------------------------------------------------
+  // Logging
+
+  compile group: 'com.typesafe.scala-logging', name: 'scala-logging-slf4j_2.11', version: '2.1.2'
+//  compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.2'
+  compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
+  compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1'
+  compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-scala_2.12', version: '2.9.7'
+
+
 }
 
 task wrapper(type: Wrapper) {
