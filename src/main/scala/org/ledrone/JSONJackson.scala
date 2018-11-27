@@ -24,4 +24,9 @@ class JSONJackson {
   def fromJson[T: ClassTag](json: String): T = {
     objectMapper.readValue[T](json, classTag[T].runtimeClass.asInstanceOf[Class[T]])
   }
+
+  def toViewObj(json : String): myObject = {
+    val obj = objectMapper.readValue(json, classOf[myObject])
+    obj
+  }
 }
