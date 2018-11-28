@@ -1,7 +1,9 @@
 package org.ledrone
 
-import scala.io.Source
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.scala.DefaultScalaModule
 
+import scala.io.Source
 
 object LeDroneMain extends App {
   def returnOk() : String = {
@@ -10,24 +12,20 @@ object LeDroneMain extends App {
 
   case class User(userId : Int, id : Int, title : String, completed : Boolean)
 
-  def getData() : Unit = {
+  def getData() : Map[String, String] = {
     val data = Source.fromURL("https://jsonplaceholder.typicode.com/todos/1").mkString
+    val arrayData = Source.fromFile("/Users/dayah/dayah_projects/drone/scala-project-template/src/main/scala/org/ledrone/testJson.txt").getLines.mkString
 
-    val strData =
-      """
-        |{"data" : {
-        |"key1" : "value1",
-        |"key2" : "value2",
-        |"key2" : "value3",
-        |}}
-      """.stripMargin
+    val objectMapper = new ObjectMapper
+    objectMapper.registerModule(DefaultScalaModule)
 
-    val jack = new JSONJackson
-//    println(jack.toMap(data).get("userId"))
-    val obj = jack.toViewObj(data)
-    println(obj.title)
+    def arrayToObj(json : String) : List[Map[Any,Any]] = {
+      objectMapper.readValue(json, classOf[List[Map[Any,Any]]])
+    }
 
-    println(data)
+
+    val arrayObject = arrayToObj(arrayData).head.getOrElse("data", Map.empty)
+    arrayObject.asInstanceOf[Map[String,String]]
   }
-  getData
+  println(getData)
 }

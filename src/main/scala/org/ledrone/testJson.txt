@@ -1,0 +1,15 @@
+[
+    { "data" : {
+        "name" : "New York",
+        "number" : "732921",
+        "latitude" : 38.895111,
+        "longitude" : -77.036667
+         }
+    },
+    { "metadata" : {
+         "key" : "value",
+         "foo" : "bar"
+    }
+    }
+
+]
